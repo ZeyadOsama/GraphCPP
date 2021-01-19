@@ -1,0 +1,32 @@
+name: CI
+
+on: [ push ]
+
+jobs:
+
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest ]
+        configs: [ Release, Debug ]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.0.0
+
+      - name: Build
+        uses: nicledomaS/cmake_build_action@v1.3
+        with:
+          config: ${{ matrix.configs }}
+          cmake_args: -DGraphCPP_BUILD_EXAMPLES=ON;
+
+      - name: Test
+        uses: nicledomaS/cmake_build_action@v1.3
+        with:
+          config: ${{ matrix.configs }}
+          cmake_args: -DGraphCPP_BUILD_TESTS=ON;
+
+      - name: Lint
+        uses: deep5050/cppcheck-action@v2.0.0
+        continue-on-error: true
