@@ -148,3 +148,36 @@ TEST_CASE("PseudoGraph Test - Edge Addition", "[PseudoGraph],[NotDirected],[Edge
         REQUIRE(g.AddEdge(nodes_names, nodes_names) == true);
     }
 }
+
+TEST_CASE("PseudoGraph Test - Cycles", "[PseudoGraph],[Cycles]") {
+    SECTION("Not Cyclic"){
+        vector<string> nodes_names = {"A", "B", "C", "D"};
+        vector<int> nodes_data = {1, 2, 3, 4};
+
+        PseudoGraph<string, int> g;
+        g.AddNode(nodes_names, nodes_data);
+        for (int i = 0; i < nodes_names.size() - 1; i++) {
+            g.AddEdge(nodes_names[i], nodes_names[i + 1]);
+        }
+
+        auto explored_nodes = g.Explore("A");
+        for (auto const &n : explored_nodes) {
+            cout << n << endl;
+        }
+        REQUIRE(g.IsCyclic() == false);
+
+    }
+
+    SECTION("Cyclic"){
+        vector<string> nodes_names = {"A", "B", "C"};
+        vector<int> nodes_data = {1, 2, 3};
+
+        PseudoGraph<string, int> g;
+        g.AddNode(nodes_names, nodes_data);
+        for (int i = 0; i < nodes_names.size() - 1; i++) {
+            g.AddEdge(nodes_names[i], nodes_names[i + 1]);
+        }
+        g.AddEdge(nodes_names[nodes_names.size() - 1], nodes_names[0]);
+        REQUIRE(g.IsCyclic() == true);
+    }
+}
