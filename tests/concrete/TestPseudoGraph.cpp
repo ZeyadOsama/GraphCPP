@@ -159,13 +159,7 @@ TEST_CASE("PseudoGraph Test - Cycles", "[PseudoGraph],[Cycles]") {
         for (int i = 0; i < nodes_names.size() - 1; i++) {
             g.AddEdge(nodes_names[i], nodes_names[i + 1]);
         }
-
-        auto explored_nodes = g.Explore("A");
-        for (auto const &n : explored_nodes) {
-            cout << n << endl;
-        }
         REQUIRE(g.IsCyclic() == false);
-
     }
 
     SECTION("Cyclic"){
