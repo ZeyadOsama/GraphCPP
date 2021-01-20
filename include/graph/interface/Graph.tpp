@@ -7,6 +7,8 @@
 
 #include <graph/interface/Node.tpp>
 
+#include <vector>
+
 namespace graph {
 
     template<typename T, typename K = T>

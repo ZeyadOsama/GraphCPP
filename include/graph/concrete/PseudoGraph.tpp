@@ -10,6 +10,7 @@
 #include <vector>
 #include <tuple>
 #include <sstream>
+#include <algorithm>
 
 namespace graph {
 

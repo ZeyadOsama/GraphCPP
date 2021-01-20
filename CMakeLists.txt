@@ -12,6 +12,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/prerequisites)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/include)
+
 option(GraphCPP_BUILD_EXAMPLES "Build the example of GraphCPP." OFF)
 if (GraphCPP_BUILD_EXAMPLES)
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/examples)
