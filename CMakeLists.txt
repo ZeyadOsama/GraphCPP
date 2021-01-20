@@ -5,8 +5,8 @@ cmake_policy(SET CMP0048 NEW)
 # Project settings.
 project(GraphCPP-Library VERSION 1.0.0)
 
-# Set C++ standard to C++11.
-set(CMAKE_CXX_STANDARD 11)
+# Set C++ standard to C++14.
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/prerequisites)
